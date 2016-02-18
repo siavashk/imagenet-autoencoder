@@ -1,0 +1,68 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you give
+% someone the link to this page, they can edit at the same
+% time. See the help menu above for more info. Enjoy!
+%
+% Note: you can export the pdf to see the result at full
+% resolution.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Block diagram wire junctions
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+
+\begin{comment}
+:Title: Block diagram line junctions
+:Slug: line-junctions
+:Tags: Block diagrams, Foreach, Transformations, Paths
+
+An example of how to draw line junctions in a block diagram.
+A semicircle is used to indicate that two lines are not connected.
+This is a good example of how flexible TikZ' paths are.
+The intersection between the lines are calculated using the convenient
+``-|`` syntax. Since we want the semicircle to have its center where
+the lines intersect, we have to shift the intersection coordinate
+accordingly.
+
+\end{comment}
+
+
+\begin{document}
+
+\tikzstyle{block} = [draw,minimum size=2em]
+\tikzstyle{data} = [draw,shape=circle,minimum size=2em]
+
+
+% diameter of semicircle used to indicate that two lines are not connected
+\def\radius{.7mm}
+\tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
+
+\begin{tikzpicture}[>=latex']
+\node[data] at (0,0) (input) {I};
+\node[block] at (1.5,0) (conv1) {$Conv_1$};
+\draw[->] (input) -- (conv1);
+\node[block] at (3,0) (relu1) {$ReLU$};
+\draw[->] (conv1) -- (relu1);
+\node[block] at (4.5,0) (conv2) {$Conv_2$};
+\draw[->] (relu1) -- (conv2);
+\node[block] at (6,0) (relu2) {$ReLU$};
+\draw[->] (conv2) -- (relu2);
+\node[block] at (7.5,0) (pool1) {$Pool_1$};
+\draw[->] (relu2) -- (pool1);
+\node[block] at (9,0) (conv3) {$Conv_3$};
+\draw[->] (pool1) -- (conv3);
+\node[block] at (10.5,0) (relu3) {$ReLU$};
+\draw[->] (conv3) -- (relu3);
+\node[block] at (12,0) (pool2) {$Pool_2$};
+\draw[->] (relu3) -- (pool2);
+\node[block] at (13.5,0) (l1) {$Linear$};
+\draw[->] (pool2) -- (l1);
+\node[data] at (15,0) (output) {C};
+\draw[->] (l1) -- (output);
+
+\end{tikzpicture}
+\end{document}
