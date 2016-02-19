@@ -46,6 +46,6 @@ function autoencoder:initialize()
   self.net = self.net:cuda()
 end
 
-function autoencoder:print_self()
+function autoencoder:printself()
   print(self.net)
 end
