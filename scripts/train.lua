@@ -30,6 +30,8 @@ ae = autoencoder()
 
 ae:initialize()
 
+ae:printself()
+
 criterion = nn.MSECriterion():cuda()
 
 trainer = nn.StochasticGradient(ae.net, criterion)
