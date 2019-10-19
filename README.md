@@ -1,3 +1,5 @@
+This repository is archived as of 2019 because Torch is no longer a relevant machine learning framework.
+
 # imagenet-autoencoder
 Autoencoder trained on ImageNet Using Torch 7
 
